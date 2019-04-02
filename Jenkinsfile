@@ -1,11 +1,11 @@
+
 node {
   withCredentials([
-      [$class: 'UsernamePasswordMultiBinding', credentialsId: git_creds, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS'],
+      [$class: 'UsernamePasswordMultiBinding', credentialsId: "1234567", usernameVariable: 'dockeruser', passwordVariable: 'dockerpass'],
   ]){
     stage ('echo variables') {
       sh """(
-        echo "User: ${GIT_USER}"
-        echo "Pass: ${GIT_PASS}"
+       Docker login -u $dockeruser -p $dockerpass
       )"""
     }
   }
